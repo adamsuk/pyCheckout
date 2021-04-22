@@ -1,0 +1,27 @@
+testName,cart_list,prices_file,prices_key,discounts_file,discount_key,sort_key,expected_output,notes
+test_check_cart_pass-singleItems,"['Bread','Milk','Apples']",,,,,,"['apples','bread','milk']",These are reading from the default prices_file so will need updating whenever that is
+test_check_cart_pass-duplicateItems,"['Bread','Milk','Apples','Apples','Bread']",,,,,,"['apples','bread','milk']",These are reading from the default prices_file so will need updating whenever that is
+test_check_cart_fail-singleItems_unordered,"['Bread','Milk','Apples']",,,,,,"['bread','apples','milk']",These are reading from the default prices_file so will need updating whenever that is
+test_check_cart_fail-duplicateItems_not_set,"['Bread','Milk','Apples','Apples','Bread']",,,,,,"['apples','apples','bread','bread','milk']",These are reading from the default prices_file so will need updating whenever that is
+test_sys_exit-cart_item_doesnt_exist,"['Bread','Milk','Apples','Ham']",,,,,,666,Error codes could change but this is currently the corresponding code.
+test_sys_exit-prices_file_key_not_found,,,fake_key,,,,999,Error codes could change but this is currently the corresponding code.
+test_sys_exit-discounts_file_key_not_found,,,,,fake_key,,999,Error codes could change but this is currently the corresponding code.
+test_check_cart_pass-newItem_with_dummyPricesFile,"['Bread','Milk','Apples','Ham']",tests/dummy_rrp.json,,,,,"['apples','bread','ham','milk']",Requires dummy_rrp.json file in current directory
+test_check_discounts_pass-newItem_with_dummyDiscountsFile,"['Bread','Milk','Apples','Ham']",tests/dummy_rrp.json,,tests/dummy_discounts.json,,,['ham'],Requires dummy_discounts.json file in current directory
+test_check_cart_pass-newItem_with_newPricesKey,"['Bread','Milk','Apples','Ham']",tests/prices_key_rrp.json,dummy_items_key,,,,"['apples','bread','ham','milk']",Requires dummy_rrp.json file in current directory
+test_check_discounts_pass-newItem_with_newDiscountsKey,"['Bread','Milk','Apples','Ham']",tests/dummy_rrp.json,,tests/discount_key_discounts.json,dummy_discount_key,,['ham'],Requires dummy_discounts.json file in current directory
+test_cart_subtotal_pass-singleItems,"['Bread','Milk','Apples']",tests/rrp.json,,tests/discounts.json,,,3.1,To ensure item properties are consistent for testing a copy has been taken
+test_cart_discount_pass-singleItems,"['Bread','Milk','Apples']",tests/rrp.json,,tests/discounts.json,,,0.1,To ensure item properties are consistent for testing a copy has been taken
+test_cart_total_pass-singleItems,"['Bread','Milk','Apples']",tests/rrp.json,,tests/discounts.json,,,3,To ensure item properties are consistent for testing a copy has been taken
+test_cart_subtotal_pass-duplicateItems,"['Bread','Milk','Apples','Apples','Bread']",tests/rrp.json,,tests/discounts.json,,,4.9,To ensure item properties are consistent for testing a copy has been taken
+test_cart_discount_pass-duplicateItems,"['Bread','Milk','Apples','Apples','Bread']",tests/rrp.json,,tests/discounts.json,,,0.2,To ensure item properties are consistent for testing a copy has been taken
+test_cart_total_pass-duplicateItems,"['Bread','Milk','Apples','Apples','Bread']",tests/rrp.json,,tests/discounts.json,,,4.7,To ensure item properties are consistent for testing a copy has been taken
+test_cart_subtotal_pass-complexDiscount_not_met,"['Bread','Milk','Apples','Apples','Bread','Soup']",tests/rrp.json,,tests/discounts.json,,,5.55,Checking complex discount based on the quantity of another item works
+test_cart_discount_pass-complexDiscount_not_met,"['Bread','Milk','Apples','Apples','Bread','Soup']",tests/rrp.json,,tests/discounts.json,,,0.2,Checking complex discount based on the quantity of another item works
+test_cart_total_pass-complexDiscount_not_met,"['Bread','Milk','Apples','Apples','Bread','Soup']",tests/rrp.json,,tests/discounts.json,,,5.35,Checking complex discount based on the quantity of another item works
+test_cart_subtotal_pass-complexDiscount_met_once,"['Bread','Milk','Apples','Apples','Bread','Soup','Soup']",tests/rrp.json,,tests/discounts.json,,,6.2,Have multiple potential duplicate discounted items but cap it based on the complex discount quantity
+test_cart_discount_pass-complexDiscount_met_once,"['Bread','Milk','Apples','Apples','Bread','Soup','Soup']",tests/rrp.json,,tests/discounts.json,,,0.6,Have multiple potential duplicate discounted items but cap it based on the complex discount quantity
+test_cart_total_pass-complexDiscount_met_once,"['Bread','Milk','Apples','Apples','Bread','Soup','Soup']",tests/rrp.json,,tests/discounts.json,,,5.6,Have multiple potential duplicate discounted items but cap it based on the complex discount quantity
+test_cart_subtotal_pass-complexDiscount_met_twice,"['Bread','Milk','Apples','Apples','Bread','Soup','Soup','Soup','Soup']",tests/rrp.json,,tests/discounts.json,,,7.5,Have multiple potential duplicate discounted items but cap it based on the complex discount quantity
+test_cart_discount_pass-complexDiscount_met_twice,"['Bread','Milk','Apples','Apples','Bread','Soup','Soup','Soup','Soup']",tests/rrp.json,,tests/discounts.json,,,1,Have multiple potential duplicate discounted items but cap it based on the complex discount quantity
+test_cart_total_pass-complexDiscount_met_twice,"['Bread','Milk','Apples','Apples','Bread','Soup','Soup','Soup','Soup']",tests/rrp.json,,tests/discounts.json,,,6.5,Have multiple potential duplicate discounted items but cap it based on the complex discount quantity

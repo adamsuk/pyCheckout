@@ -1,0 +1,9 @@
+{
+    "discounts": [
+        {
+            "product": "ham",
+            "discount": 10,
+            "discount_type": "percent"
+        }
+    ]
+}

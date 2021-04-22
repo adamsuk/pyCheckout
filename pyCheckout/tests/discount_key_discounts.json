@@ -1,0 +1,9 @@
+{
+    "dummy_discount_key": [
+        {
+            "product": "ham",
+            "discount": 10,
+            "discount_type": "percent"
+        }
+    ]
+}

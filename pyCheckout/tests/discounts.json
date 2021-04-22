@@ -1,0 +1,18 @@
+{
+    "discounts": [ 
+        {
+            "product": "apples",
+            "discount": 10,
+            "discount_type": "percent"
+        },
+        {
+            "product": "bread",
+            "discount": 50,
+            "discount_type": "percent",
+            "requires": {
+                "product": "soup",
+                "quantity": 2
+            }
+        }
+    ]
+}

@@ -8,10 +8,12 @@ Functions
 import os
 import json
 import copy
+import sys
+
 
 def read_json(json_file, nested_key, sort_key):
     # define empty dictionary
-    data={}
+    data = {}
     # check file exists
     if os.path.isfile(json_file):
         # open the raw json
@@ -29,7 +31,11 @@ def read_json(json_file, nested_key, sort_key):
                 print("   --- {}".format(raw_item))
             else:
                 data[raw_item[sort_key].lower()] = raw_item
+    else:
+        print("Error: file {} not found".format(json_file))
+        sys.exit(111)
     return data
+
 
 def dict_sub_filter(full_dict, filter_list, all_keys_req=False):
     if all_keys_req:
